@@ -903,7 +903,7 @@ if ($_POST['username'] == '' || empty($_POST['username']) || trim($_POST['userna
 			return $this->FormatMessage($err);
 		}
 		
-		$generalElementsArray = array('fullname','email','phone','mobilephone','dob','gender','country','state','zip','fax','photo','comment');
+		$generalElementsArray = array('fullname','email','phone','mobilephone','dob','gender','country','state','street','city','zip','fax','photo','comment');
 		$generalElementsUpdate = array();
 		
 		// CREDIT: Guillaume to delete data and for code optimisation
