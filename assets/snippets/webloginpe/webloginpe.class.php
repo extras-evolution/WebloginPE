@@ -147,7 +147,8 @@ class WebLoginPE
 	 */
 	function __construct($LanguageArray, $dateFormat = '%A %B %d, %Y at %I:%M %p', $UserImageSettings = '105000,100,100', $type = 'simple')
 	{
-		require_once 'manager/includes/controls/class.phpmailer.php';
+		global $modx;
+		require_once MGR_DIR . '/includes/controls/phpmailer/PHPMailer.php';
 		$this->LanguageArray = $LanguageArray;
 		$this->DateFormat = $dateFormat;
 		$this->UserImageSettings = $UserImageSettings;
@@ -684,7 +685,7 @@ if ($_POST['username'] == '' || empty($_POST['username']) || trim($_POST['userna
 		}
 
 		// Bring in php mailer!
-		$Register = new PHPMailer();
+		$Register = new PHPMailer\PHPMailer\PHPMailer();
 		$Register->CharSet = $modx->config['modx_charset'];
 		$Register->From = $myEmail;
 		$Register->FromName = $siteName;
@@ -715,7 +716,7 @@ if ($_POST['username'] == '' || empty($_POST['username']) || trim($_POST['userna
 				$notification = str_replace($toReplace, $value, $notification);
 			}
 			
-			$Notify = new PHPMailer();
+			$Notify = new PHPMailer\PHPMailer\PHPMailer();
 			$Notify->CharSet = $modx->config['modx_charset'];
 			
 			foreach ($emailArray as $address)
@@ -769,7 +770,7 @@ if ($_POST['username'] == '' || empty($_POST['username']) || trim($_POST['userna
 				$prunedMessage = str_replace('[+111+]', strftime('%A %B %d, %Y', $user['cachepwd']), $prunedMessage);
 				$emailsender = $modx->config['emailsender'];
 				
-				$Pruned = new PHPMailer();
+				$Pruned = new PHPMailer\PHPMailer\PHPMailer();
 				$Pruned->CharSet = $modx->config['modx_charset'];
 				$Pruned->From = $modx->config['emailsender'];
 				$Pruned->FromName = 'WebLoginPE Pruning Agent';
@@ -1579,7 +1580,7 @@ if ($_POST['username'] == '' || empty($_POST['username']) || trim($_POST['userna
 			return;
 		}
 		
-		$EmailMessage = new PHPMailer();
+		$EmailMessage = new PHPMailer\PHPMailer\PHPMailer();
 		$EmailMessage->CharSet = $modx->config['modx_charset'];
 		$EmailMessage->From = $me['email'];
 		$EmailMessage->FromName = $me['fullname']." (".$me['username'].")";
@@ -1652,7 +1653,7 @@ if ($_POST['username'] == '' || empty($_POST['username']) || trim($_POST['userna
             $message = str_replace("[+semail+]", $emailsender, $message);
             $message = str_replace("[+surl+]", $url, $message);
 
-			$Reset = new PHPMailer();
+			$Reset = new PHPMailer\PHPMailer\PHPMailer();
 			$Reset->CharSet = $modx->config['modx_charset'];
 			$Reset->From = $emailsender;
 			$Reset->FromName = $site_name;
