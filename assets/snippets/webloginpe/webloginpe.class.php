@@ -2122,7 +2122,7 @@ if ($_POST['username'] == '' || empty($_POST['username']) || trim($_POST['userna
 		$web_groups = $modx->getFullTableName('web_groups');
 		$webgroup_access = $modx->getFullTableName('webgroup_access');
 		
-		$documentGroups = '';
+		$documentGroups = [];
 		$i = 0;
 	    $sql = "SELECT uga.documentgroup FROM ".$web_groups." ug INNER JOIN ".$webgroup_access." uga ON uga.webgroup=ug.webgroup WHERE ug.webuser =".$this->User['internalKey'];
 	    $currentUsersGroups = $modx->db->query($sql); 
